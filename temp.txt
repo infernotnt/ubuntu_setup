@@ -1,6 +1,0 @@
-swap caps lock and escape:
-gnome tweaks -> keyboard & mouse -> additional layout options -> caps lock behavor
-
-
-dodati jos detalja za uklanjanje passworda, odgovor sa 69 lajkova:
-https://askubuntu.com/questions/235084/how-do-i-remove-ubuntus-password-requirement

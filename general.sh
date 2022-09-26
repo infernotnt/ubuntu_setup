@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if ! [ -z "$SUDO_USER" ]
+then
+	USERNAME=$SUDO_USER
+fi
+
 USER_HOME=/home/$USERNAME
 
 # Neovim plugins, currently probably doesn't work
@@ -20,11 +25,23 @@ mkdir -v    $USER_HOME/.scripts
 
 mkdir -pv   $USER_HOME/.cache/temp_my_ms
 
+printf "::Copying the .config directory\n"
 cp -rv backup/.config/*                 $USER_HOME/.config/
-cp -rv backup/.scripts/*                $USER_HOME/.scripts
-cp -rv backup/.local/share/fonts/*      $USER_HOME/.local/share/fonts/
+printf "\n\n\n\n"
 
+
+printf "::Copying the .scripts directory\n"
+cp -rv backup/.scripts/*                $USER_HOME/.scripts
+printf "\n\n\n\n"
+
+printf "::Copying the .inputrc file\n"
 cp -v backup/.inputrc                   $USER_HOME/.inputrc
+
+printf "::Copying the .bashrc file\n"
+cp -v backup/.bashrc                    $USER_HOME/.bashrc
+
+printf "::Copying the .bash_profile file\n"
+cp -v backup/.bash_profile                   $USER_HOME/.bash_profile
 
 # Set brave browser as the default pdf viewer
 xdg-mime default brave-browser.desktop application/pdf
@@ -32,7 +49,9 @@ xdg-mime default brave-browser.desktop application/pdf
 rm -r $USER_HOME/Public $USER_HOME/Documents $USER_HOME/Videos $USER_HOME/Music
 
 # Set correct permissions
-chown -Rv $USERNAME $USER_HOME/*
+printf "::Setting permissions\n"
+chown -R $USERNAME $USER_HOME/*
 
 # Make sure all the files are owned by the local user and not by the root account
-chown -Rv $USERNAME $USER_HOME/
+printf "::Setting file and directory ownage\n"
+chown -R $USERNAME $USER_HOME/
