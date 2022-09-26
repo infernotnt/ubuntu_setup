@@ -46,7 +46,11 @@ cp -v backup/.bash_profile                   $USER_HOME/.bash_profile
 # Set brave browser as the default pdf viewer
 xdg-mime default brave-browser.desktop application/pdf
 
+# Remove unnecesary directories
 rm -r $USER_HOME/Public $USER_HOME/Documents $USER_HOME/Videos $USER_HOME/Music
+
+# For some reason this needs to be done or otherwise tldr doesn't work properly
+tldr -u
 
 # Set correct permissions
 printf "::Setting permissions\n"

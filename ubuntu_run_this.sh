@@ -19,6 +19,15 @@ sudo apt install -y build-essential
 # Pc-specific
 sudo apt install -y radeontop
 
+# install flatpaks
+sudo apt install -y flatpak
+
+# enables the Software to see Flatpaks
+sudo apt install -y gnome-software-plugin-flatpak
+
+# add flathub
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 
 # Install Brave Browser =========
 sudo apt install -y apt-transport-https curl

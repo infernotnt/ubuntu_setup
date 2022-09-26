@@ -128,7 +128,7 @@ autocmd BufEnter *.md set wrap
 
 " Vim-studio-dark colortheme for everything except for markdown (.md) files
 autocmd BufEnter * colorscheme codedark
-autocmd BufEnter *.md colorscheme gruvbox
+#autocmd BufEnter *.md colorscheme gruvbox
 
 " When you scroll up/down, it makes your screen move before your cursor hits the last/first line
 set scrolloff=5
