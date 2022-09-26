@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# This script counts the lines in a remote git repository
+# Usage: gitlc <git repository link>
+
+# How it works:
+#  0. Deletes all the files in ~/.cache/temp_my_ms/gitlc/
+#  1. Downloads the repository with "--depth=1" which minimizes the size of .gitignore
+#  2. Counts the lines with an external program
+#  3. Deletes all the files in ~/.cache/temp_my_ms/gitlc/
+
+if [ -z $1 ]
+then
+    printf "ERROR: Missing git repository link. (see ~/.scripts/gitlc)"
+    exit 1
+fi
+
+mkdir -pv ~/.cache/temp_my_ms/gitlc/
+rm -vrf ~/.cache/temp_my_ms/gitlc/?*
+
+printf "=== gitlc: Cloning the repository on the local machine\n"
+
+git -C ~/.cache/temp_my_ms/gitlc clone --depth=1 $1
+
+printf "=== gitlc: Counting the lines of the repository\n"
+
+output=$(tokei ~/.cache/temp_my_ms/gitlc)
+
+printf "=== gitlc: Deleting the repository from the local machine"
+
+rm -rvf ~/.cache/temp_my_ms/gitlc/?*
+
+printf "=== gitlc: Lines of the repo:\n$output"
+
+
+exit 0

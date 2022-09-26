@@ -1,0 +1,6 @@
+#!/bin/bash
+
+path="$HOME/Pictures/screenshot-$(date +%s)"
+
+gnome-screenshot -a
+wl-paste > $path

@@ -1,0 +1,58 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then
+    printf "ERROR: Not enough arguments (see ~/.scripts/my-preview)\n"
+else
+
+    fullfile=$1
+
+    filename=$(basename -- "$fullfile")
+    extension="${filename##*.}"
+
+    filename="${fullfile##*/}"
+   # filename="${filename%.*}"
+
+    case $extension in
+        txt)
+            printf "cat"
+            ;;
+        sh)
+            printf "cat"
+            ;;
+        c)
+            printf "cat"
+        cpp
+            printf "cat"
+            ;;
+        py)
+            printf "cat"
+            ;;
+        html)
+            printf "cat"
+            ;;
+        css)
+            printf "cat"
+            ;;
+        vimrc)
+            printf "cat"
+            ;;
+        vim)
+            printf "cat"
+            ;;
+        png)
+            printf "$IMAGE_VIEWER"
+            ;;
+        jpg)
+            printf "$IMAGE_VIEWER"
+            ;;
+        jpeg)
+            printf "$IMAGE_VIEWER"
+            ;;
+
+        esac
+
+    #printf "File: $filename | extension: $extension\n"
+fi
+
+exit 0

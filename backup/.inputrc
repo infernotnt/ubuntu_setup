@@ -1,0 +1,7 @@
+$include /etc/inputrc
+
+# If ambigous, show all cases after pressing the first TAB
+set show-all-if-ambiguous on
+
+# TAB autocomplete is case insensitive
+set completion-ignore-case on

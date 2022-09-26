@@ -1,0 +1,25 @@
+#!/bin/bash
+
+[ -z "$1" ] && echo "ERROR: Not enough information specified (see ~/.scripts/rclone/rclone.sh)" && exit 1
+
+if [ $1 == "dl" ] || [ $1 == "download" ]
+then
+    rclone --verbose sync --progress $MY_SYNC_REMOTE:/sync ~/sync
+elif [ $1 == "ul" ] || [ $1 == "upload" ]
+then
+    rclone --verbose sync --progress ~/sync $MY_SYNC_REMOTE:/sync
+elif [ $1 == "sync" ]
+then
+    #~/.scripts/rclonesync --verbose --check-acces $MY_SYNC_REMOTE:/sync ~/sync
+    ~/.scripts/rclonesync --verbose $MY_SYNC_REMOTE:/sync ~/sync
+elif [ $1 == "init" ]
+then
+    mkdir ~/sync
+    ~/.scripts/rclonesync --first-sync --verbose db:/sync ~/sync/
+else
+    printf "ERROR: Argument not recognized (see ~/.scripts/rclonesync)"
+    exit 1
+fi
+
+
+exit 0

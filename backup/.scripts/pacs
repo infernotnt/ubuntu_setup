@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo dnf install $(dnf --cacheonly list | fzf --height=30 --filepath-word --multi --cycle --preview="dnf --cacheonly info {}" --preview-window=:hidden --bind=space:toggle-preview)
+
+exit 0

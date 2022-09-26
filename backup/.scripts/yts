@@ -1,0 +1,34 @@
+#!/bin/bash
+
+subdir="$HOME/.cache/temp_my_ms/yts"
+
+mkdir -pv "$subdir"
+
+if [ $1 == "auto" ]
+then
+    subtitle="--write-auto-sub"
+    link=$2
+elif [ $1 == "all" ]
+then
+    subtitle="--all-subs"
+    link=$2
+elif [ $1 == "lang" ]
+then
+    subtitle="--write-sub --sub-lang $2"
+    link=$3
+else
+    printf "ERROR: Argument not recognized (see ~/.scripts/yts)\n"
+    exit 1
+fi
+
+printf "Subtitle = $subtitle \n"
+printf "Link = $link \n"
+
+cd $subdir
+rm -v "izlaz-"*
+
+youtube-dl --skip-download --restrict-filenames --output './izlaz-%(title)s-%(upload_date)s-%(id)s' $subtitle $link
+
+$EDITOR "izlaz-"*
+
+exit 0

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# * open sa argumentima
+# * mozda kao preview text file-ova sa "cat"
+# directory tree preview kao nixcasts
+# directory (i ostalo, tipa xdg) 2 mogucnosti: pokazuje hidden fajlove i ne pokazuje
+
+
+if [ -z "$1" ] # Open with xdg-open
+then
+    fzf --height=30 --cycle --multi --preview='cat {}' +i --bind=ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up | xargs xdg-open
+elif [ $1 == "p" ] # Pacman package search (p = pacman)
+then
+    sudo pacman -S $(pacman -Slq | fzf --height=30 --filepath-word --multi --cycle --preview="pacman -Si {}" --preview-window=:hidden --bind=space:toggle-preview)
+elif [ $1 == "e" ] # Open in $EDITOR (e = editor)
+then
+    fzf --height=30 --cycle --multi --preview='cat {}' +i --bind=ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up | xargs $EDITOR
+elif [ $1 == "d" ] # Change Directory (d = directory)
+then
+    #cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+    directory=$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)
+    cd $directory
+else
+    printf "asdf"
+fi
+
+exit 0

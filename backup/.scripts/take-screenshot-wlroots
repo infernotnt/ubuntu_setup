@@ -1,0 +1,21 @@
+#!/bin/bash
+
+mkdir -pv $HOME/Pictures/screenshots
+path="$HOME/Pictures/screenshots/screenshot-$(date +%s)"
+
+if [ -z $1 ] # Regular screenshot
+then
+    grim -c - | wl-copy
+    wl-paste > $path
+elif [ $1 == "snip" ] # Screenshoting only a part of the screen a.k.a. snipping
+then
+    grim -c -g "$(slurp -d)" - | wl-copy
+    wl-paste > $path
+else
+    printf "ERROR: Unrecognized argument (see ~/.scripts/take-screenshot)\n"
+    exit 1
+fi
+
+printf "$path"
+
+exit 0

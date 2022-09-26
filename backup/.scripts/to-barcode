@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Usage:
+#   Just type "to-barcode" and current system clipboard (the stuff you copied last) will be turned into a QR code you can scan with your phone
+
+dir=$HOME/.cache/temp_my_ms/to-barcode
+mkdir -pv "$dir"
+
+rm -v "$dir"/?*
+
+wl-paste | qrencode --output="$dir"/1.png
+xdg-open "$dir"/1.png
+
+rm -v "$dir"/?*
+
+exit 0

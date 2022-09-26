@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Toggles wlsunset (blue light filter)
+
+output=$(pgrep -c ^wlsunset$)
+
+if [ $output -eq 0 ]
+then
+    wlsunset -l 45 -L 20
+else
+    pkill ^wlsunset$
+fi
+
+exit 0
