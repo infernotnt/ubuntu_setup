@@ -97,8 +97,9 @@ stty -ixon
 # Allows you to cd into a directory merly by typing the directory name. Useful for stuf like ".." for going a directory back
 shopt -s autocd
 
-alias d="sudo dnf"
-alias D="sudo dnf -y"
+alias a="sudo apt"
+alias A="sudo apt -y"
+alias aupdate="sudo apt update ; sudo apt upgrade"
 
 alias sudo="sudo "
 alias o="xdg-open"
@@ -118,6 +119,8 @@ alias tree="tree -C" # Makes it colored
 alias df="df -h"
 alias du="du -h"
 
+alias g="git add . ; git commit -m "c" ; git push"
+
 # funny star ward thing
 alias starwars="telnet towel.blinkenlights.nl"
 
@@ -125,6 +128,11 @@ alias term="exec gnome-terminal" # Opens terminal in current directory
 
 # Potencijalne boje (staviti u F{}) 196 160, Lex Fridman inspired
 #PS1="%F{196}%~$%f "
+
+
+# Fzf stuff - autocompletion **<TAB> does not work for unknown reasons
+source /usr/share/doc/fzf/examples/key-bindings.bash
+
 
 
 ## Adds color to man pages
@@ -140,7 +148,3 @@ alias term="exec gnome-terminal" # Opens terminal in current directory
 
 # Environment variables are in ~/.zshenv
 # Path variable is in ~/.zshenv
-
-
-
-
