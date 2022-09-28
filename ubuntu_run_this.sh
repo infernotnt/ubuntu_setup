@@ -47,6 +47,7 @@ sudo apt install -y brave-browser
 
 # Large
 # sudo apt install -y wine
+# sudo apt install -y jupyter
 
 # sudo apt autoremove? idk
 

@@ -182,3 +182,4 @@ video/x-flv=vlc.desktop;
 application/pdf=brave-browser.desktop;
 x-content/unix-software=nautilus-autorun-software.desktop;
 image/jpeg=pinta.desktop;gimp.desktop;
+text/x-python=com.visualstudio.code.desktop;
